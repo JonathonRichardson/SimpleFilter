@@ -1,2 +1,5 @@
 // Ignore project files from JetBrains products.
 .idea/**
+
+// Ignore node modules
+node_modules/**

@@ -1,0 +1,25 @@
+{
+  "name": "simplefilter",
+  "version": "1.0.0",
+  "description": "Filter algorithms",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JonathonRichardson/SimpleFilter.git"
+  },
+  "author": "Jon Richardson",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/JonathonRichardson/SimpleFilter/issues"
+  },
+  "homepage": "https://github.com/JonathonRichardson/SimpleFilter#readme",
+  "devDependencies": {
+    "gulp": "^3.9.1"
+  }
+}
