@@ -26,8 +26,9 @@ gulp.task('test', ['build'], function () {
 });
 
 gulp.task('clean', function(cb) {
-    del(['dist']);
-    cb();
+    del(['dist']).then(function() {
+        cb();
+    });
 });
 
 gulp.task('build', ['clean'], function() {
