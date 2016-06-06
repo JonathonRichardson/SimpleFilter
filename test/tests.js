@@ -10,22 +10,22 @@ describe("Table Filters Are Correctly Determined", function() {
     };
 
     // Check some patterns that should be regexes.
-    ensureCorrectFilter(Filter.filters.regex, "/hello/i");
-    ensureCorrectFilter(Filter.filters.regex, "/hello/");
+    ensureCorrectFilter(Filter.getFilter('regex'), "/hello/i");
+    ensureCorrectFilter(Filter.getFilter('regex'), "/hello/");
 
     // Check dates
-    ensureCorrectFilter(Filter.filters.date, "d<2015-05");
-    ensureCorrectFilter(Filter.filters.date, "m=2015-05");
-    ensureCorrectFilter(Filter.filters.date, "y=2015-05");
-    ensureCorrectFilter(Filter.filters.date, "w=w-1");
-    ensureCorrectFilter(Filter.filters.date, "d<2015/05");
-    ensureCorrectFilter(Filter.filters.date, "d<2015/05/20");
-    ensureCorrectFilter(Filter.filters.date, "d<2015/05/20 00:00:00");
+    ensureCorrectFilter(Filter.getFilter('date'), "d<2015-05");
+    ensureCorrectFilter(Filter.getFilter('date'), "m=2015-05");
+    ensureCorrectFilter(Filter.getFilter('date'), "y=2015-05");
+    ensureCorrectFilter(Filter.getFilter('date'), "w=w-1");
+    ensureCorrectFilter(Filter.getFilter('date'), "d<2015/05");
+    ensureCorrectFilter(Filter.getFilter('date'), "d<2015/05/20");
+    ensureCorrectFilter(Filter.getFilter('date'), "d<2015/05/20 00:00:00");
 
     // Check some numbers
-    ensureCorrectFilter(Filter.filters.numerical, "<13");
-    ensureCorrectFilter(Filter.filters.numerical, "<013");
-    ensureCorrectFilter(Filter.filters.numerical, ">2");
+    ensureCorrectFilter(Filter.getFilter('numerical'), "<13");
+    ensureCorrectFilter(Filter.getFilter('numerical'), "<013");
+    ensureCorrectFilter(Filter.getFilter('numerical'), ">2");
 });
 
 describe("Table Filters are applied correctly", function() {
