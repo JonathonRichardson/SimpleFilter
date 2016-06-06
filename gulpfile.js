@@ -12,11 +12,15 @@ var rename  = require('gulp-rename');
 var notify  = require('gulp-notify');
 var concat  = require('gulp-concat');
 var replace = require('gulp-replace');
+var jasmine = require('gulp-jasmine');
 
 gulp.task('default', ['build']);
 
 gulp.task('test', ['build'], function () {
-    console.log("testing...");
+    return gulp.src("test/tests.js").pipe(jasmine({
+        "stopSpecOnExpectationFailure": false,
+        "random": false
+    }));
 });
 
 gulp.task('clean', function(cb) {
@@ -58,8 +62,8 @@ gulp.task('build', ['clean'], function() {
     var amd = amdcode.pipe(insert.prepend("var Filter = {};" + EOL))
         .pipe(wrapper({
             name: false,
-            deps: ['jquery', 'underscore'],
-            args: ['$',      '_'],
+            deps: ['jquery', 'underscore', 'moment'],
+            args: ['$',      '_',          'moment'],
             exports: 'Filter'
         }))
         .pipe(eol())
@@ -73,8 +77,8 @@ gulp.task('build', ['clean'], function() {
     var cjs = cjscode.pipe(insert.prepend("var Filter = {};" + EOL))
         .pipe(wrapper({
             name: false,
-            deps: ['jquery', 'underscore'],
-            args: ['$',      '_'],
+            deps: ['jquery', 'underscore', 'moment'],
+            args: ['$',      '_',          'moment'],
             exports: 'Filter',
             type: 'commonjs'
         }))
@@ -86,5 +90,5 @@ gulp.task('build', ['clean'], function() {
         .pipe(gulp.dest('dist'))
         .pipe(notify({ message: 'Scripts task complete' }));
 
-    return amd;
+    return cjs;
 });

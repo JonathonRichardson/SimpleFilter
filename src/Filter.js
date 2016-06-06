@@ -87,9 +87,10 @@ var filters = {
         }
     }
 };
-$.each(filters, function(key, value) {
+_.each(filters, function(value, key) {
     value.filterName = key;
 });
+Filter.filters = filters;
 
 var regularExpressionToMatchRegexFilters = /^\/(.*)\/i?$/;
 
@@ -145,7 +146,7 @@ Filter.applyFilter = function(filter, cellValue, caseInsensitive) {
     var innerFilters = filter.split(";");
     var valueHasFailedFilterTest = false;
 
-    $.each(innerFilters, function(i, filter) {
+    _.each(innerFilters, function(filter) {
         if (!valueMatchesFilterInner(filter, cellValue, caseInsensitive)) {
             valueHasFailedFilterTest = true;
             return false;
@@ -171,6 +172,7 @@ var determineFilter = function(filter) {
         return filters.substring;
     }
 };
+Filter.determineFilter = determineFilter;
 
 var valueMatchesFilterInner = function(filter, cellValue, caseInsensitive) {
     var negateAnswer  = false;
