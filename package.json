@@ -33,6 +33,7 @@
     "gulp-replace": "^0.5.4",
     "gulp-uglify": "^1.5.3",
     "gulp-util": "^3.0.7",
+    "jasmine-console-reporter": "^1.2.6",
     "jquery": "^2.2.4",
     "jshint": "^2.9.2",
     "moment": "^2.13.0",

@@ -23,6 +23,9 @@ var parseMoment = function(text) {
         return time;
     }
     else {
+        // Since sometimes there's a problem with slashes, replace them with dashes
+        text = text.replace(/\//g, '-');
+
         return moment(text);
     }
 };

@@ -13,13 +13,15 @@ var notify  = require('gulp-notify');
 var concat  = require('gulp-concat');
 var replace = require('gulp-replace');
 var jasmine = require('gulp-jasmine');
+var JasmineConsoleReporter = require('jasmine-console-reporter');
 
 gulp.task('default', ['build']);
 
 gulp.task('test', ['build'], function () {
     return gulp.src("test/tests.js").pipe(jasmine({
         "stopSpecOnExpectationFailure": false,
-        "random": false
+        "random": false,
+        reporter: new JasmineConsoleReporter()
     }));
 });
 
