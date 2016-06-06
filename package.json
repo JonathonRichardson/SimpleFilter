@@ -19,9 +19,14 @@
     "url": "https://github.com/JonathonRichardson/SimpleFilter/issues"
   },
   "homepage": "https://github.com/JonathonRichardson/SimpleFilter#readme",
+  "dependencies": {
+    "moment": "^2.13.0",
+    "underscore": "^1.8.3"
+  },
   "devDependencies": {
     "del": "^2.2.0",
     "gulp": "^3.9.1",
+    "gulp-clone": "^1.0.0",
     "gulp-concat": "^2.6.0",
     "gulp-eol": "^0.1.2",
     "gulp-insert": "^0.5.0",
@@ -36,7 +41,6 @@
     "jasmine-console-reporter": "^1.2.6",
     "jquery": "^2.2.4",
     "jshint": "^2.9.2",
-    "moment": "^2.13.0",
-    "underscore": "^1.8.3"
+    "merge2": "^1.0.2"
   }
 }
