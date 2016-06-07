@@ -35,7 +35,6 @@ gulp.task('clean', function(cb) {
 
 var wrap = function(stream, type, dependencies, exportName) {
     var wrapperConfig = {
-        name: false,
         deps: _.keys(dependencies),
         args: _.values(dependencies),
         exports: exportName
