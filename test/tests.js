@@ -1,38 +1,41 @@
 var Filter = require('../dist/filter');
 var moment = require('moment');
+var _ = require("underscore");
 
 describe("Table Filters Are Correctly Determined", function() {
-    var ensureCorrectFilter = function(filter, text) {
-        var message = "Text '" + text + "' matches type \"" + filter.filterName + "\"";
+    var ensureCorrectFilter = function(filterName, text) {
+        var message = "Text '" + text + "' matches type \"" + filterName + "\"";
+        var filterer = new Filter.Filterer(text);
+
         it(message, function() {
-            expect(Filter.determineFilter(text)).toEqual(filter);
+            expect(filterer.filters[text].name).toEqual(filterName);
         })
     };
 
     // Check some patterns that should be regexes.
-    ensureCorrectFilter(Filter.getFilter('regex'), "/hello/i");
-    ensureCorrectFilter(Filter.getFilter('regex'), "/hello/");
+    ensureCorrectFilter('regex', "/hello/i");
+    ensureCorrectFilter('regex', "/hello/");
 
     // Check dates
-    ensureCorrectFilter(Filter.getFilter('date'), "d<2015-05");
-    ensureCorrectFilter(Filter.getFilter('date'), "m=2015-05");
-    ensureCorrectFilter(Filter.getFilter('date'), "y=2015-05");
-    ensureCorrectFilter(Filter.getFilter('date'), "w=w-1");
-    ensureCorrectFilter(Filter.getFilter('date'), "d<2015/05");
-    ensureCorrectFilter(Filter.getFilter('date'), "d<2015/05/20");
-    ensureCorrectFilter(Filter.getFilter('date'), "d<2015/05/20 00:00:00");
+    ensureCorrectFilter('date', "d<2015-05");
+    ensureCorrectFilter('date', "m=2015-05");
+    ensureCorrectFilter('date', "y=2015-05");
+    ensureCorrectFilter('date', "w=w-1");
+    ensureCorrectFilter('date', "d<2015/05");
+    ensureCorrectFilter('date', "d<2015/05/20");
+    ensureCorrectFilter('date', "d<2015/05/20 00:00:00");
 
     // Check some numbers
-    ensureCorrectFilter(Filter.getFilter('numerical'), "<13");
-    ensureCorrectFilter(Filter.getFilter('numerical'), "<013");
-    ensureCorrectFilter(Filter.getFilter('numerical'), ">2");
+    ensureCorrectFilter('numerical', "<13");
+    ensureCorrectFilter('numerical', "<013");
+    ensureCorrectFilter('numerical', ">2");
 });
 
 describe("Table Filters are applied correctly", function() {
     var checkMatch = function(shouldMatch, filterString, cellValue) {
         var matchString = (shouldMatch) ? "matches" : "does not match";
         var message = "Cell Value '" + cellValue + "' " + matchString + " filter '" + filterString + "'";
-        var actuallyMatches = Filter.applyFilter(filterString, cellValue);
+        var actuallyMatches = (new Filter.Filterer(filterString)).matches(cellValue);
 
         it(message, function() {
             expect(actuallyMatches).toEqual(shouldMatch);

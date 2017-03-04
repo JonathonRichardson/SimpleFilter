@@ -1,11 +1,4 @@
-import {DateFilter} from "./filters/date";
-import {NumericalFilter} from "./filters/numerical";
-import {RegexFilter} from "./filters/regex";
-import {SubstringFilter} from "./filters/substring";
-
 import * as _ from "underscore";
-
-console.log("Someone required me (Filter)");
 
 export abstract class SimpleFilter {
     constructor(public readonly name: string, public readonly regex: RegExp) {
@@ -15,12 +8,21 @@ export abstract class SimpleFilter {
     abstract matchesFilter(filterString: string, value: string): boolean;
 }
 
+/*
+ * These all require SimpleFilter to be defined, so we need to import them after we've
+ * declared that abstract class
+ */
+import {DateFilter} from "./filters/date";
+import {NumericalFilter} from "./filters/numerical";
+import {RegexFilter} from "./filters/regex";
+import {SubstringFilter} from "./filters/substring";
+
 export class Filterer {
     filters: {[name: string]: SimpleFilter} = {};
 
     constructor(filterText: string) {
         filterText.split(";").forEach((filterPiece) => {
-            let filter = getFilter(filterPiece);
+            let filter = determineFilter(filterPiece);
 
             if (filter != null) {
                 this.filters[filterPiece] = filter;
@@ -51,6 +53,7 @@ export function registerFilter(filter: SimpleFilter): void {
 }
 
 export function getFilter(name: string): SimpleFilter | null {
+    console.log("Filtermap:", registeredFiltersMap);
     return registeredFiltersMap[name];
 }
 

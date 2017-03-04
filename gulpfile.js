@@ -21,7 +21,7 @@ var merge   = require('merge2');
 
 gulp.task('default', ['build']);
 
-gulp.task('test', /*['build'],8*/ function () {
+gulp.task('test', ['build'], function () {
     return gulp.src("test/tests.js").pipe(jasmine({
         "stopSpecOnExpectationFailure": false,
         "random": false,
