@@ -5,4 +5,8 @@
 node_modules/**
 
 // Ignore build files
-dist/**
+dist/**/*.js
+dist/**/*.d.ts
+
+// Bower requires the compiled files to be in the repo...  Not my favorite thing, but whatever.
+!dist/web/**

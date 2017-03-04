@@ -1,4 +1,4 @@
-var Filter = require('../dist/filter-commonjs');
+var Filter = require('../dist/filter');
 var moment = require('moment');
 
 describe("Table Filters Are Correctly Determined", function() {
