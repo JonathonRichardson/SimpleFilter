@@ -1,13 +1,5 @@
 import * as _ from "underscore";
 
-export abstract class SimpleFilter {
-    constructor(public readonly name: string, public readonly regex: RegExp) {
-
-    }
-
-    abstract matchesFilter(filterString: string, value: string): boolean;
-}
-
 /*
  * These all require SimpleFilter to be defined, so we need to import them after we've
  * declared that abstract class
@@ -16,6 +8,7 @@ import {DateFilter} from "./filters/date";
 import {NumericalFilter} from "./filters/numerical";
 import {RegexFilter} from "./filters/regex";
 import {SubstringFilter} from "./filters/substring";
+import {SimpleFilter} from "./filters/simple-filter";
 
 export class Filterer {
     filters: {[name: string]: SimpleFilter} = {};
@@ -53,7 +46,6 @@ export function registerFilter(filter: SimpleFilter): void {
 }
 
 export function getFilter(name: string): SimpleFilter | null {
-    console.log("Filtermap:", registeredFiltersMap);
     return registeredFiltersMap[name];
 }
 

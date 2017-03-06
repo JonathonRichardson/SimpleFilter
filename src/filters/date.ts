@@ -1,4 +1,4 @@
-import {SimpleFilter} from "../filter";
+import {SimpleFilter} from "./simple-filter";
 
 import * as moment from "moment";
 import * as _ from "underscore";
@@ -35,10 +35,9 @@ function parseMoment(text: string): moment.Moment {
     }
 }
 
-export class DateFilter extends SimpleFilter {
-    constructor() {
-        super("date", /^[dwmy][=<>]/);
-    }
+export class DateFilter implements SimpleFilter {
+    name = "date";
+    regex = /^[dwmy][=<>]/;
 
     matchesFilter(filterString: string, value: string): boolean {
         let comparator  = filterString.substr(1,1); // <, >, or =

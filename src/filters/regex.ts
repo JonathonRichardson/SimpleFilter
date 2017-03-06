@@ -1,11 +1,10 @@
-import {SimpleFilter} from "../filter";
+import {SimpleFilter} from "./simple-filter";
 
 let regex = /^\/(.*)\/i?$/;
 
-export class RegexFilter extends SimpleFilter {
-    constructor() {
-        super("regex", regex);
-    }
+export class RegexFilter implements SimpleFilter {
+    name = 'regex';
+    regex = regex;
 
     matchesFilter(filterString: string, value: string): boolean {
         let filterMatchObject = filterString.match(regex);

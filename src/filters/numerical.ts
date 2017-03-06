@@ -1,11 +1,10 @@
-import {SimpleFilter} from "../filter";
+import {SimpleFilter} from "./simple-filter";
 
 import * as _ from "underscore";
 
-export class NumericalFilter extends SimpleFilter {
-    constructor() {
-        super("numerical", /^[<>]/);
-    }
+export class NumericalFilter implements SimpleFilter {
+    name = 'numerical';
+    regex = /^[<>]/;
 
     matchesFilter(filterString: string, value: string): boolean {
         let comparator   = filterString.substr(0, 1);
