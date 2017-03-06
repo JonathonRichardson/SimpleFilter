@@ -6,7 +6,6 @@ var insert  = require('gulp-insert');
 var del     = require('del');
 var eol     = require('gulp-eol');
 var gutil   = require('gulp-util');
-const debug = require('gulp-debug');
 var jshint  = require('gulp-jshint');
 var uglify  = require('gulp-uglify');
 var rename  = require('gulp-rename');
