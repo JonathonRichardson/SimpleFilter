@@ -8,7 +8,8 @@
     "test": "test"
   },
   "scripts": {
-    "test": "./node_modules/.bin/gulp test"
+    "test": "./node_modules/.bin/gulp test",
+    "prepublish": "in-publish && npm test || not-in-publish"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,8 @@
   },
   "homepage": "https://github.com/JonathonRichardson/SimpleFilter#readme",
   "dependencies": {
+    "bower": "^1.8.0",
+    "in-publish": "^2.0.0",
     "moment": "^2.17.1",
     "source-map-loader": "^0.1.6"
   },

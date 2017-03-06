@@ -6,3 +6,6 @@ node_modules/**
 
 // Ignore build files
 dist/**/*
+
+// Ignore Bower packages
+bower_components
